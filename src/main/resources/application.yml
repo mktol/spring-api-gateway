@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: gateway-server
+
+server:
+  port: 8765
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: true
+  eureka:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+
+
+zuul:
+  prefix: /api
+  routes:
+    city-rout-handler:
+      path: /path-handler/**
+      serviceId: city-rout-handler
+    rest-path-server:
+      path: /rest-path/**
+      serviceId: rest-path-server
+
+#ribbon:
+#  eureka:
+#    enabled: true
+
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.web: DEBUG
